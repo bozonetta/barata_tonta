@@ -1,4 +1,4 @@
-import { Injectable, Logger } from "@nestjs/common"
+import { Injectable, Logger, NotFoundException } from "@nestjs/common"
 import { FindTodoByIdRepository } from "../repository"
 import { CreateTodoDto } from "../dto/create-todo.dto"
 
@@ -14,11 +14,16 @@ async execute(data: CreateTodoDto){
         this.logger.log('Procurando calango ...')
 
         const todo = await this.findAllTodosRepository.findById(id)
-        this.logger.log('Calango encontrado com sucesso')
+        
+        if (!todo) {
+            throw new NotFoundException('Calango não encontrado')
+        }
+
+        this.logger.log('ToDo found successfully')
         return todo
     }   catch (error) {
         this.logger.error(error)
-        throw new Error('Falha ao procurar calango')
+        throw error
     }
     }
 }
