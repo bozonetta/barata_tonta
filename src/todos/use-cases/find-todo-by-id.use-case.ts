@@ -12,7 +12,8 @@ export class CreateTodoUseCase {
 async execute(data: CreateTodoDto){
     try {
         this.logger.log('Procurando calango ...')
-        const todo = await this.findAllTodosRepository.FindUnique(data)
+
+        const todo = await this.findAllTodosRepository.findById(id)
         this.logger.log('Calango encontrado com sucesso')
         return todo
     }   catch (error) {

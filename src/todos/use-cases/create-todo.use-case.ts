@@ -15,7 +15,7 @@ async execute(data: CreateTodoDto){
         const todo = await this.createTodoRepository.create(data)
         this.logger.log('Calangos criados com sucesso')
         return todo
-    }   catch (error) {
+    }   catch (error) { //<- o erro é pego aqui
         this.logger.error(error)
         throw new Error('Falha ao criar calangos')
     }
