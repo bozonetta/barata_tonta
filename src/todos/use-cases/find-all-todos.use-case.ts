@@ -3,13 +3,13 @@ import { FindAllTodosRepository } from '../repository';
 import { CreateTodoDto } from '../dto/create-todo.dto';
 
 @Injectable()
-export class CreateTodoUseCase {
+export class FindAllTodoUseCase {
     constructor(
         private readonly findAllTodosRepository: FindAllTodosRepository,
         private readonly logger: Logger,
     ) {}
 
-async execute(data: CreateTodoDto){
+async findAll(data: CreateTodoDto){
     try {
         this.logger.log('Procurando calangos ...')
         const todo = await this.findAllTodosRepository.findAll()

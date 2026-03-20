@@ -9,7 +9,7 @@ export class CreateTodoUseCase {
         private readonly logger: Logger,
     ) {}
 
-async execute(data: CreateTodoDto){
+async create(data: CreateTodoDto){
     try {
         this.logger.log('Criando calangos ...')
         const todo = await this.createTodoRepository.create(data)

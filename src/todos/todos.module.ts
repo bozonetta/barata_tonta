@@ -1,7 +1,7 @@
 import { Logger, Module } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import { TodosController } from './todos.controller';
-import * as UseCases from './use-cases';
+import * as UseCases from './use-cases/index';
 import * as Repositories from './repository';
 import { PrismaService } from 'src/shared/database/prisma.database';
 
