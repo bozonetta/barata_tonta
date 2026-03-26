@@ -5,14 +5,14 @@ import { CreateTodoDto } from '../dto/create-todo.dto';
 @Injectable()
 export class CreateTodoUseCase {
     constructor(
-        private readonly createTodoRepository: CreateTodoRepository,
+        private readonly createTodoUseCase: CreateTodoUseCase,
         private readonly logger: Logger,
     ) {}
 
 async create(data: CreateTodoDto){
     try {
         this.logger.log('Criando calangos ...')
-        const todo = await this.createTodoRepository.create(data)
+        const todo = await this.createTodoUseCase.create(data)
         this.logger.log('Calangos criados com sucesso')
         return todo
     }   catch (error) { //<- o erro é pego aqui

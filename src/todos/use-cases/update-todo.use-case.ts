@@ -4,25 +4,28 @@ import { UpdateTodoDto } from "../dto/update-todo.dto";
 
 @Injectable()
 export class UpdateTodoUseCase {
-    constructor(
-        private readonly updateTodoRepository: UpdateTodoRepository,
-        private readonly findTodoByIdRepository: FindTodoByIdRepository,
-        private readonly logger: Logger,
-    ) {}
+  constructor(
+    private readonly updateTodoRepository: UpdateTodoRepository,
+    private readonly findTodoByIdRepository: FindTodoByIdRepository,
+    private readonly logger: Logger,
+  ) {}
 
-    async update(id: string, data: UpdateTodoDto)
-        try {
-            this.logger.log('Atualizando calangos...')
-            const todo = await this.findTodoByIdRepository.update(id)
+  async update(id: string, data: UpdateTodoDto) {
+    try {
+      this.logger.log('Updating todo...');
 
-            if(!todo) {
-                throw new NotFoundException('Calango não encontrado')
-            }
+      const todo = await this.findTodoByIdRepository.findById(id);
+      if (!todo) {
+        throw new Error('Todo not found');
+      }
 
-            await this.updateTodoRepository.update(id, data)
-            return(todo)
-        } catch (error) {
-            this.logger.error(error)
-            throw error
-        }
+      const updatedTodo = await this.updateTodoRepository.update(id, data);
+      this.logger.log('Todo updated successfully');
+      return updatedTodo;
+    } catch (error) {
+      this.logger.error(error);
+      throw new Error('Failed to update todo');
+    }
+  }
 }
+

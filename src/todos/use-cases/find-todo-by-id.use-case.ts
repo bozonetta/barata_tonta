@@ -5,7 +5,7 @@ import { CreateTodoDto } from "../dto/create-todo.dto"
 @Injectable()
 export class FindByIdTodoUseCase {
     constructor(
-        private readonly findTodoByIdRepository: FindTodoByIdRepository,
+        private readonly findTodoByIdUseCase: FindTodoByIdRepository,
         private readonly logger: Logger,
     ) {}
 
@@ -13,7 +13,7 @@ async FindById(id: string) {
         try {
             this.logger.log('Procurando calango ...')
 
-            const todo = await this.findTodoByIdRepository.findById(id)
+            const todo = await this.findTodoByIdUseCase.findById(id)
         
             if (!todo) {
                 throw new NotFoundException('Calango não encontrado')
