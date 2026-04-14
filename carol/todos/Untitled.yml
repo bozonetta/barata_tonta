@@ -1,0 +1,27 @@
+info:
+  name: Untitled
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{url}}/todos"
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Finalizar projeto NestJS",
+        "description": "Configurar os DTOs e a integração com o Prisma",
+        "completed": false,
+        "priority": "HIGH",
+        "dueAt": "2026-04-20T14:00:00.000Z",
+        "completedAt": "2026-04-14T15:30:00.000Z",
+        "userId": "341e71fd-3191-4c89-bb48-cac491f76339"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
