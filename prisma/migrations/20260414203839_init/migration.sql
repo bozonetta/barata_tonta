@@ -9,7 +9,7 @@ CREATE TABLE "users" (
     "password_hash" TEXT NOT NULL,
     "is_active" BOOLEAN NOT NULL DEFAULT true,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "update_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
@@ -18,14 +18,14 @@ CREATE TABLE "users" (
 CREATE TABLE "todos" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
-    "desciption" TEXT,
+    "description" TEXT,
     "completed" BOOLEAN NOT NULL DEFAULT false,
     "priority" "TodoPriority" NOT NULL DEFAULT 'MEDIUM',
     "due_at" TIMESTAMP(3),
-    "completd_at" TIMESTAMP(3),
-    "User_id" TEXT NOT NULL,
+    "completed_at" TIMESTAMP(3),
+    "user_id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "update_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "todos_pkey" PRIMARY KEY ("id")
 );
@@ -34,10 +34,10 @@ CREATE TABLE "todos" (
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
-CREATE INDEX "todos_User_id_idx" ON "todos"("User_id");
+CREATE INDEX "todos_user_id_idx" ON "todos"("user_id");
 
 -- CreateIndex
 CREATE INDEX "todos_completed_idx" ON "todos"("completed");
 
 -- AddForeignKey
-ALTER TABLE "todos" ADD CONSTRAINT "todos_User_id_fkey" FOREIGN KEY ("User_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "todos" ADD CONSTRAINT "todos_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

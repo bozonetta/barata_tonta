@@ -1,0 +1,10 @@
+info:
+  name: todos
+  type: folder
+  seq: 1
+
+request:
+  headers:
+    - name: url
+      value: http://localhost:3000
+  auth: inherit

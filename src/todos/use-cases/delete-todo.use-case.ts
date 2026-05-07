@@ -4,7 +4,7 @@ import { DeleteTodoRepository, FindTodoByIdRepository } from "../repository";
 @Injectable()
 export class DeleteTodoUseCase {
     constructor(
-        private readonly deleteTodoUseCase: DeleteTodoUseCase,
+        private readonly deleteTodoRepository: DeleteTodoRepository,
         private readonly findTodoByIdUseCase: FindTodoByIdRepository,
         private readonly logger: Logger,
     ) {}
@@ -19,7 +19,7 @@ export class DeleteTodoUseCase {
             throw new NotFoundException('ToDo not found')
            }
 
-           await this.deleteTodoUseCase.execute(id)
+           await this.deleteTodoRepository.delete(id)
            this.logger.log('ToDo deleted successfully' )
            return(todo)
         }  catch (error) {
