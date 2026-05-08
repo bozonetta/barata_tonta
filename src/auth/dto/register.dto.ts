@@ -3,7 +3,7 @@ import { IsOptional, IsString } from "class-validator";
 export class RegisterDto{
 @IsString()
 @IsOptional()
-nome?: string
+name?: string
 
 @IsString()
 email: string
